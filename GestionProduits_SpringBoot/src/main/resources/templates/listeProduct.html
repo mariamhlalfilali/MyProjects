@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Produits</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<!-- MENU -->
+<div class="navbar">
+    <span class="brand">Gestion Produits</span>
+    <a th:href="@{/}">Liste des produits</a>
+    <a th:href="@{/add}">Ajouter produit</a>
+</div>
+
+<div class="container">
+    <div class="card">
+        <h2>Liste des Produits</h2>
+
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Prix (€)</th>
+                <th>Quantité</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="produit : ${produits}">
+                <td th:text="${produit.id}"></td>
+                <td th:text="${produit.nom}"></td>
+                <td th:text="${produit.prix}"></td>
+                <td th:text="${produit.quantite}"></td>
+                <td>
+                    <a th:href="@{/edit/{id}(id=${produit.id})}"
+                       class="btn btn-primary">Modifier</a>
+
+                    <a th:href="@{/delete/{id}(id=${produit.id})}"
+                       class="btn btn-danger"
+                       onclick="return confirm('Confirmer la suppression ?')">
+                        Supprimer
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <br>
+
+    </div>
+</div>
+
+</body>
+</html>
